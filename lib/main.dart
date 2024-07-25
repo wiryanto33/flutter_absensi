@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sttal/data/datasources/auth_remote_datasource.dart';
+import 'package:sttal/presentation/auth/bloc/login/login_bloc.dart';
+import 'package:sttal/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:sttal/presentation/auth/pages/splash_page.dart';
 
 import 'core/core.dart';
@@ -14,9 +18,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
           dividerTheme:
               DividerThemeData(color: AppColors.light.withOpacity(0.5)),
@@ -35,7 +48,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-      home: const SplashPage(),
+        home: const SplashPage(),
+      ),
     );
   }
 }

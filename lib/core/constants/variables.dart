@@ -1,4 +1,4 @@
 class Variables {
-  static const String appName = 'GeoFace Flutter Intensive Club 16';
-  static const String baseUrl = 'http://192.168.1.9:8000/';
+  static const String appName = 'GeoFace STTAL';
+  static const String baseUrl = 'http://192.168.82.217:8000';
 }
