@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                   ? Button.filled(
                       onPressed: () {
                         context.pop();
-                        context.push(const RegisterFaceAttendancePage());
+                        context.push(const RegisterFaceAttendencePage());
                       },
                       label: 'Attendance Using Face ID',
                       icon: Assets.icons.attendance.svg(),
@@ -218,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                                   onPressed: () {
                                     context.pop();
                                     context.push(
-                                        const RegisterFaceAttendancePage());
+                                        const RegisterFaceAttendencePage());
                                   },
                                   label: 'Izinkan',
                                 ),
