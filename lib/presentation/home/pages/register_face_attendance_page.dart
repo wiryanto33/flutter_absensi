@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:sttal/core/core.dart';
+import 'package:sttal/core/assets/assets.gen.dart';
+import 'package:sttal/core/components/spaces.dart';
+import 'package:sttal/core/constants/colors.dart';
 
 class RegisterFaceAttendancePage extends StatefulWidget {
   const RegisterFaceAttendancePage({super.key});
@@ -24,9 +26,8 @@ class _RegisterFaceAttendancePageState
 
   @override
   void initState() {
-    // TODO: implement initState
-    _initializeCamera();
     super.initState();
+    _initializeCamera();
   }
 
   void _initializeCamera() async {
@@ -46,7 +47,7 @@ class _RegisterFaceAttendancePageState
     });
   }
 
-    void _reverseCamera() async {
+  void _reverseCamera() async {
     if (camDirec == CameraLensDirection.back) {
       camDirec = CameraLensDirection.front;
       description = _availableCameras![1];
@@ -58,7 +59,7 @@ class _RegisterFaceAttendancePageState
     // setState(() {
     //   _controller;
     // });
-    // Inisialisasi kamera dengan deskripsi kamera baru
+    // inisialisasi kamera baru
     _initializeCamera();
   }
 
@@ -82,26 +83,26 @@ class _RegisterFaceAttendancePageState
       );
     }
     return SafeArea(
-        child: Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0.0,
-            left: 0.0,
-            width: size.width,
-            height: size.height,
-            child: AspectRatio(
-              aspectRatio: _controller!.value.aspectRatio,
-              child: CameraPreview(_controller!),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Positioned(
+              top: 0.0,
+              left: 0.0,
+              width: size.width,
+              height: size.height,
+              child: AspectRatio(
+                aspectRatio: _controller!.value.aspectRatio,
+                child: CameraPreview(_controller!),
+              ),
             ),
-          ),
-          // Positioned(
-          //     top: 0.0,
-          //     left: 0.0,
-          //     width: size.width,
-          //     height: size.height,
-          //     child: buildResult()),
-          Positioned(
+            // Positioned(
+            //     top: 0.0,
+            //     left: 0.0,
+            //     width: size.width,
+            //     height: size.height,
+            //     child: buildResult()),
+            Positioned(
               bottom: 5.0,
               left: 0.0,
               right: 0.0,
@@ -128,12 +129,14 @@ class _RegisterFaceAttendancePageState
                         const Spacer(),
                         const SpaceWidth(48.0)
                       ],
-                    )
+                    ),
                   ],
                 ),
-              ))
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

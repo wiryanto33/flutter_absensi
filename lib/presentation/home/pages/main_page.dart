@@ -14,8 +14,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final _widgets = [
+    // const HomePage(),
     const HomePage(),
-    const Center(child: Text('This is home page')),
     const Center(child: Text('This is history page')),
     const SettingPage(),
     const Center(child: Text('This is profile page')),

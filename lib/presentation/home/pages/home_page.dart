@@ -164,7 +164,8 @@ class _HomePageState extends State<HomePage> {
               faceEmbedding != null
                   ? Button.filled(
                       onPressed: () {
-                        // context.push(const RegisterFaceAttendencePage());
+                        context.pop();
+                        context.push(const RegisterFaceAttendancePage());
                       },
                       label: 'Attendance Using Face ID',
                       icon: Assets.icons.attendance.svg(),
