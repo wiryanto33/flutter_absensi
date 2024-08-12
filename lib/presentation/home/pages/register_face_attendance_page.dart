@@ -6,7 +6,10 @@ import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:image/image.dart' as img;
 import 'package:sttal/core/ml/recognition_embedding.dart';
 import 'package:sttal/core/ml/recognizer.dart';
+import 'package:sttal/data/datasources/auth_local_datasource.dart';
 import 'package:sttal/presentation/auth/bloc/logout/logout_bloc.dart';
+import 'package:sttal/presentation/home/bloc/update_user_register_face/update_user_register_face_bloc.dart';
+import 'package:sttal/presentation/home/pages/main_page.dart';
 import 'package:sttal/presentation/home/widgets/face_detector_painter.dart';
 
 import '../../../core/core.dart';
@@ -247,24 +250,24 @@ class _RegisterFaceAttendencePageState
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: BlocConsumer<LogoutBloc,
-                    LogoutState>(
+                child: BlocConsumer<UpdateUserRegisterFaceBloc,
+                    UpdateUserRegisterFaceState>(
                   listener: (context, state) {
                     state.maybeWhen(
                       orElse: () {},
                       error: (message) {
-                        // return ScaffoldMessenger.of(context).showSnackBar(
-                        //   SnackBar(
-                        //     content: Text(message),
-                        //   ),
-                        // );
+                        return ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(message),
+                          ),
+                        );
                       },
-                      success: () {
+                      success: (data) {
                         // AuthLocalDataSource()
                         //     .reSaveAuthData(responseModel.user!);
                         // Navigator.pop(context);
-                        // AuthLocalDatasource().updateAuthData(data);
-                        // context.pushReplacement(const MainPage());
+                        AuthLocalDatasource().updateAuthData(data);
+                        context.pushReplacement(const MainPage());
                       },
                     );
                   },
@@ -276,11 +279,11 @@ class _RegisterFaceAttendencePageState
                               // Image to XFile to be able to pass it to the bloc
 
                               // final XFile newCroppedFaced = XFile(croppedFace.);
-                              // context.read<UpdateUserRegisterFaceBloc>().add(
-                              //     UpdateUserRegisterFaceEvent
-                              //         .updateProfileRegisterFace(
-                              //             recognition.embedding.join(','),
-                              //             null));
+                              context.read<UpdateUserRegisterFaceBloc>().add(
+                                  UpdateUserRegisterFaceEvent
+                                      .updateProfileRegisterFace(
+                                          recognition.embedding.join(','),
+                                          null));
                             },
                             label: 'Register');
                       },

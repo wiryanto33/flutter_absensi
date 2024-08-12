@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sttal/data/datasources/attendance_remote_datasource.dart';
 import 'package:sttal/data/datasources/auth_remote_datasource.dart';
 import 'package:sttal/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:sttal/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:sttal/presentation/auth/pages/splash_page.dart';
+import 'package:sttal/presentation/home/bloc/checkin_attendance/checkin_attendance_bloc.dart';
+import 'package:sttal/presentation/home/bloc/checkout_attendance/checkout_attendance_bloc.dart';
+import 'package:sttal/presentation/home/bloc/get_satuan/get_satuan_bloc.dart';
+import 'package:sttal/presentation/home/bloc/is_checkedin/is_checkedin_bloc.dart';
+import 'package:sttal/presentation/home/bloc/update_user_register_face/update_user_register_face_bloc.dart';
 
 import 'core/core.dart';
 
@@ -25,6 +31,21 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => UpdateUserRegisterFaceBloc(AuthRemoteDatasource()),
+        ),
+         BlocProvider(
+          create: (context) => GetSatuanBloc(AttendanceRemoteDatasource()),
+        ),
+         BlocProvider(
+          create: (context) => IsCheckedinBloc(AttendanceRemoteDatasource()),
+        ),
+         BlocProvider(
+          create: (context) => CheckinAttendanceBloc(AttendanceRemoteDatasource()),
+        ),
+         BlocProvider(
+          create: (context) => CheckoutAttendanceBloc(AttendanceRemoteDatasource()),
         ),
       ],
       child: MaterialApp(
